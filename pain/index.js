@@ -5,16 +5,15 @@ const fs = require("fs");
   var size = fs.readdirSync(`./problems/${question}/input/`).length;
   const arr = [];
   const { exec, spawn } = require("child_process");
+const { exit } = require("process");
   var i=0;
+  try {
   exec("g++ main.cpp", (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);
-      return;
-    }
-    if (stderr) {
+    }else if (stderr) {
       console.log(`stderr: ${stderr}`);
-      return;
-    }
+    } else {
     const fs = require("fs"), path = require("path");
     const folder = `./problems/${question}/input/`;
     fs.readdirSync(folder).forEach(file => {
@@ -41,4 +40,9 @@ const fs = require("fs");
         }
       });
     });
+    }
   });
+}
+catch(err) {
+  console.log(err);
+}

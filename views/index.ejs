@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<script src="../ejs.js/"></script>
+<html>
+<head>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+
+
+/* center container in the middle */
+html {
+  display: grid;
+}
+
+body {
+  display: grid;
+  background: #E0C9CB;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+#idk {
+  display: flex;
+  justify-content: center;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+.container {
+  align-items: center;
+  position: relative;
+  float: left;
+  background: #F5F5F5;
+  border-radius: 10px;
+  text-align: center;
+  margin-inline: 2%;
+  margin-block: 2%;
+  height: 390px;
+  min-width:22.5%;
+}
+
+p {
+  font-size: 0.8em;
+  color: #BA7E7E;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 1.6em;
+  color: #4E4E4E;
+}
+
+h5 {
+  font-size: 1.6em;
+  color: #4E4E4E;
+}
+h2 {
+  font-size: 1.2em;
+  color: #C3A1A0;
+}
+
+h3 {
+  font-size: 1.3em;
+  color: #5cb85c;
+  padding: 5%;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h4 {
+  font-size: 1.2em;
+  color: #BA7E7E;
+  display: inline-block;
+  padding: 2.5%;
+  outline: 0;
+  border: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+img {
+  width: 290px;
+  margin-top: 47px;
+}
+
+.slideshow-buttons {
+  display: none;
+}
+
+.product {
+  position: absolute;
+  height: 100%;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+}
+
+.desc {
+  text-transform: none;
+  letter-spacing: 0;
+  color: #4E4E4E;
+  font-size: 0.9em;
+  line-height: 1.6em;
+  text-align: center;
+  display: -webkit-box;   
+   -webkit-line-clamp: 4;   
+   -webkit-box-orient: vertical;     
+   overflow: hidden; 
+}
+
+button {
+  background: #BA7E7E;
+  padding: 2.5%;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  margin-top: 6%;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #F5F5F5;
+  cursor: pointer;
+  height: 60%;
+}
+
+.add {
+  position: absolute;
+  bottom: 17.5%;
+  width: 100%;
+  height: 20%;
+}
+
+.sizes {
+  display: grid;
+  color: #D9AAB7;
+  grid-template-columns: repeat(auto-fill, 30px);
+  width: 60%;
+  grid-gap: 4px;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+
+
+.size {
+  padding: 9px;
+  border: 1px solid #E0C9CB;
+  font-size: 0.7em;
+  text-align: center;
+}
+
+.focus{
+  background: #BA7E7E;
+  color: #F5F5F5;
+}
+
+.container2 {
+  width: 20%;
+  height: 7.5%;
+  position: fixed;
+  left: 2.5%;
+  top: 4%;
+  border-radius: 25px;
+  background-color: #212121;
+  z-index: 1;
+}
+#icon-1 {
+  background-color: #E0C9CB;
+  width: 75px;
+  height: 75px;
+  border-radius: 50px;
+  position: absolute;
+  left: 15%;
+  top: 10%;
+  transform: translate(-80%, -10%);
+}
+#icon-2 {
+    background-color: #212121;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  position: absolute;
+  left: 33.5%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#icon-3 {
+  background-color: #212121;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  position: absolute;
+  left: 51%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#icon-4 {
+  background-color: #212121;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  position: absolute;
+  left: 68.5%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#icon-5 {
+  background-color: #212121;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  position: absolute;
+  left: 85%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#img {
+  font-size: 18px;
+  color: ghostwhite;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#activated {
+  background-color: #212121;
+  position: absolute;
+  left: 15%;
+  top: 20%;
+  transform: translate(-70%, -30%);
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+}
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 10%;
+  font-size: 16px;
+  padding: 0.7%;
+  border: 1px solid #ddd;
+  margin-top: 2.5%;
+  margin-left: 85%;
+  margin-bottom: 3%;
+}
+.a {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;  
+  flex-wrap:wrap;
+}
+
+</style>
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<title>Page Title</title>
+
+</head>
+<body>
+
+
+  <div class="container2">
+    <div id="activated"></div>
+    <div class="all-icons">
+  
+      <div id="icon-1">
+        <i id="img" class="fa-solid fa-house"></i>
+      </div>
+  
+      <div id="icon-2">
+        <i id="img" class="fa-solid fa-user"></i>
+      </div>
+  
+      <div id="icon-3">
+        <i id="img" class="fa-solid fa-paper-plane"></i>
+      </div>
+  
+      <div id="icon-4">
+        <i id="img" class="fa-solid fa-chart-simple"></i>
+      </div>
+  
+      <div id="icon-5">
+        <i id="img" class="fa-solid fa-trophy"></i>
+      </div>
+  
+    </div>
+  </div>
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for a task..">
+<div class="a">
+<%
+  task.Tasks.forEach(idk => {
+    %>
+    <div class="container">
+      <div class="product">
+        <p><%=idk.Author%></p>
+        <h1><%=idk.Title%> <i class="fa-regular fa-circle-check"></i></h1>
+        <h2><i class="fa-solid fa-chart-simple"></i> <%=idk.AC%> solves, <%=idk.Tags[0]%></h2>
+        <p class="desc"><%=idk.Description%></p>
+        <div id="idk">
+        <div class="buttons">
+          <button class="add">Solve</button>
+        </div>
+      </div>
+      </div>
+    </div>
+  <%
+  });
+%>
+</div>
+<script>
+  function myFunction() {
+      var input, filter, ul, li, a, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      let idk = document.querySelectorAll('.container')
+      for (i = 0; i < idk.length; i++) {
+        a = idk[i].getElementsByTagName("h1")[0];
+        txtValue = a.textContent || a.innerText;
+        console.log(txtValue);
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              idk[i].style.display = "";
+          } else {
+              idk[i].style.display = "none";
+          }
+      }
+  }
+  </script>
+</body>
+</html>
+
+

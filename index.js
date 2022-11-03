@@ -2,17 +2,23 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const {exec} = require("child_process")
-app.use(express.urlencoded());
-
+app.set('view engine', 'ejs');
 app.get('/', (req, res, next) => {
-  res.send(`<form method="POST" action="/">
+  var test = require("./tasks.json");
+  var data = {
+    names: ['geddy', 'neil', 'alex']
+  };
+  res.render("index", {data:data, task:test});
+});
+app.get('/submit', (req, res, next) => {
+  res.send(`QUESTIONS ATM: A1(a + b)\n<form method="POST" action="/submit">
   <textarea type="text" name="code" placeholder="code" rows="30" cols="90"></textarea>
   <textarea type="text" name="q" placeholder="q"></textarea>
   <input type="submit">
 </form>`);
 });
 
-app.post('/', function (req, res, next) {
+app.post('/submit', function (req, res, next) {
   fs.writeFile("./pain/main.cpp", req.body.code, function(err) {if(err) throw err});
   fs.writeFile("./pain/communicate.txt", req.body.q, function(err) {if(err) throw err});
   exec("sudo docker build -t app .", (err) => {
@@ -21,20 +27,16 @@ app.post('/', function (req, res, next) {
       return;
     }
       exec("sudo docker run app", (err, stdout, stderr) => {
-        if(stdout) {
-          res.send(JSON.parse(stdout));
-          return;
-        }
-        if(stderr) {
-          console.log(stderr);
-          return;
-        }
         if(err) {
-          console.log(err.message);
-          return;
+          res.send(err.message);
+        } else if(stderr) {
+          res.send(stderr);
+
+        } else if(stdout) {
+          res.send(stdout);
         }
       });
   });
 });
 
-app.listen(3000);
+app.listen(8080);
