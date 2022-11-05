@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js"></script>
+<head>
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #24273b;
+      overflow: hidden; 
+      height:100%;
+      display: block;
+    }
+    .taskbar {
+      padding-left: 1.5%;
+      padding-right: 1.5%;
+      width: 8%;
+      border-right: 1px dotted white;
+      position: absolute;
+      display: inline-block;
+      margin-bottom: -5000px;
+      padding-bottom: 5000px; 
+    }
+    .clock {
+      text-align: center;
+      color: white;
+      font-size: 30px;
+      padding-top: 10%;
+      padding-bottom: 10%;
+    }
+    .list {
+      letter-spacing: 0.25px;
+    }
+    .direc {
+      color: #9c9cab;
+      text-decoration: none;
+    }
+    .direc:hover {
+      color: white;
+    }
+    .ac {
+      color: white;
+    }
+    .selection {
+      font-size: 15px;
+      margin-bottom: 20%;
+    }
+    h1 {
+      color: #9c9cab;
+      font-size: 12.5px;  
+      padding-bottom: 10%;
+    }
+    .main {
+      margin-left: 11.5%;
+      height: 100%;
+    }
+    .main2 {
+      margin-left: 11.5%;
+      margin-right: 2%;
+      width: 87.5%;
+      height: 10%;
+      position: fixed;
+    }
+    .main3 {
+      margin-left: 12.5%;
+      margin-right: 11.5%;
+      position: fixed;
+      width: 75.5%;
+      height: 80%;
+      margin-top: 7%;
+      justify-content: center;
+      text-align: center;
+      background-color:black;
+      overflow-y: scroll;
+      z-index: 3;
+    }
+    .wrapper{
+      max-width: 90%;
+      overflow: hidden;
+      margin: auto;
+    }
+    .custom-gallery {
+      overflow: hidden;
+    }
+
+    .custom-gallery ul {
+      width: 100%;
+      min-height:100%;
+      display: flex;
+      list-style-type: none;
+      padding: 0;
+      margin: 2%;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      overscroll-behavior: contain;  
+      cursor: pointer;
+    } 
+    .custom-gallery li {
+      width: 320px;
+      height: 270px;
+      margin: 0px 15px 10px 10px;
+      border-radius: 3%;
+      background-color: #151728;
+      -webkit-box-shadow: 2px 3px 5px 0 rgba(14, 14, 14, 0.44);
+      box-shadow: 2px 3px 5px 0 rgba(14, 14, 14, 0.44);
+    }
+    .custom-gallery2 li {
+      display: inline-block;
+      width: 320px;
+      height: 270px;
+      margin: 0px 15px 10px 10px;
+      border-radius: 3%;
+      background-color: #151728;
+      -webkit-box-shadow: 2px 3px 5px 0 rgba(14, 14, 14, 0.44);
+      box-shadow: 2px 3px 5px 0 rgba(14, 14, 14, 0.44);
+    }
+    .figure {
+      text-align: center;
+      padding-left: 5%;
+      padding-top: 8%;
+      padding-right: 5%;
+      height: 100%;
+      text-decoration: none;
+    }
+    .figure2 {
+      text-align: center;
+      position: relative;
+  float: left;
+      padding-left: 5%;
+      padding-top: 8%;
+      padding-right: 5%;
+      height: 100%;
+      text-decoration: none;
+    }
+    h2 {
+      font-family: "Arial", sans-serif;
+      color: white;
+      font-size: 0.9em;
+    }
+    h3 {
+      font-family: "Arial", sans-serif;
+      color: white;
+      font-size: 1em;
+    }
+    h33 {
+      font-family: "Arial", sans-serif;
+      color: white;
+      font-size: 1.6em;
+    }
+    h4 {
+      color: #9c9cab;
+    }
+    h5 {
+      color: white;
+      font-size: 1.6em;
+      margin-left: 3%;
+      margin-bottom: 0;
+    }
+    h7 {
+      color: #151728;
+      font-size: 2em;
+    }
+    h6 {
+      color: white;
+      font-size: 1.6em;
+      margin: 0;
+    }
+    .de {
+      text-transform: none;
+      letter-spacing: 0;
+      color: white;
+      font-size: 0.9em;
+      line-height: 1.4em;
+      text-align: center;
+      display: -webkit-box;   
+      -webkit-line-clamp: 3;   
+      -webkit-box-orient: vertical;     
+      overflow: hidden; 
+      padding-inline: 5%;
+    }
+    
+    .box {
+      float: left;
+    }
+    .Title {
+      border-bottom: 1px solid white;
+    }
+    .button {
+  border: none;
+  color: white;
+  width: 5%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 0;
+  transition-duration: 0.4s;
+  cursor: pointer;
+      background-color: transparent;
+
+}
+
+.button1 {
+  color: white; 
+  border: 2px solid white;
+}
+
+.button1:hover {
+  background-color: white;
+  color:#24273b;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  width: 20%;
+}
+
+.grid-container > div {
+  text-align: center;
+   border: 1px solid white;
+}
+
+.item {
+  padding-inline: 5%;
+  white-space: pre-line;
+}
+.task {
+  top:0;
+  left:11.5%;
+  right:0;
+  bottom:0;
+  position: absolute;
+  overflow-y: scroll;
+}
+    a:link { text-decoration: none; }
+
+a:visited { text-decoration: none; }
+
+a:hover { text-decoration: none; }
+
+a:active { text-decoration: none; }
+    #editor {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+   }
+</style>
+
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="taskbar">
+    <div class="clock">
+      <b>
+        <p id="r">00:00:00</p>
+      </b>
+    </div>
+    <div class="list">
+      <b>
+        <h1>NAV</h1>
+        <div class="selection">
+          <a href="/" class="direc ac"><i class="fa-solid fa-house"></i> Home</a>
+        </div>
+        <div class="selection">
+          <a href="/" class="direc"><i class="fa-solid fa-user"></i> Profile</a>
+        </div>
+        <div class="selection">
+          <a href="/" class="direc"><i class="fa-solid fa-paper-plane"></i> Submissions</a>
+        </div>
+        <div class="selection">
+          <a href="/" class="direc"><i class="fa-solid fa-trophy"></i> Contests</a>
+        </div>
+        <div class="selection">
+          <a href="/" class="direc"><i class="fa-solid fa-chart-simple"></i> Leaderboards</a>
+        </div>
+
+      </b>
+    </div>
+  </div>
+  <div class="main">
+    <div class="task" style="float:left; width: 100%;">
+      <div class="Title"style="position: absolute; margin: 2%; padding-bottom: 1%; width: 84%;">
+        <h6><%=tasc.Title%></h6><button class="button button1" style="margin-top:0.5%; margin-left: 0.25%; width: 10%; border-radius: 5%;" onclick="collapse()">Code</button>
+      </div>
+      <br>
+      <div class="Description"style="position: absolute; margin: 2%; padding-bottom: 1%; width: 84%; margin-top: 8%;">
+        <h3><%=tasc.Description%></h3>
+        <br>
+        <div class="INPUT">
+          <h33>INPUT</h33>
+          <h2><%=tasc.INPUT%></h2>
+        </div>
+        <br>
+        <div class="OUTPUT">
+          <h33>OUTPUT</h33>
+          <h2><%=tasc.OUTPUT%></h2>
+        </div>
+        <div class="SAMPLE TESTS">
+          <h33>SAMPLE TESTS</h33>
+          <%
+          arr.forEach(a => {
+          %>
+          <div class="grid-container">
+            <div><h3>INPUT</h3></div>
+            <div><h3>OUTPUT</h3></div>
+            <div class="item"><h2><%=a.INPUT%></h2></div>  
+            <div class="item"><h2><%=a.OUTPUT%></h2></div>  
+          </div>
+          
+          <%
+          });
+          %>
+        </div>
+      </div>
+      
+    </div>
+    <div class="tasc" style="float:right;width: 50%; display:none; position: relative; height:100vh; background-color: #151728;">
+      <button class="button button1" style="height: 4%; width: 100%;" onclick="send()">Submit</button>
+    <div id="editor" style="margin-top: 5%;height:100vh;">#include "bits/stdc++.h"
+using namespace std;
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}</div>
+  </div>
+  <script>
+var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/dracula");
+        editor.session.setMode("ace/mode/c_cpp");
+        editor.session.setUseSoftTabs(true);
+    var myVar = setInterval(function() {
+      myTimer();
+    }, 1000);
+  
+    function myTimer() {
+      var d = new Date();
+      const today = new Date();
+      let h = today.getHours();
+      let m = today.getMinutes();
+      let s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      document.getElementById("r").innerHTML =  h + ":" + m + ":" + s;
+    }
+    function checkTime(i) {
+      if (i < 10) {
+        i = "0" + i;
+      } 
+      return i;
+    }
+    function collapse() {
+      var idk = document.getElementsByClassName("task")[0];
+      var idek = document.getElementsByClassName("tasc")[0];
+      if(idk.style.width == "100%") {
+        idk.style.width="50%";
+        idek.style.display="inline-block";
+      } else {
+        idek.style.display="none";
+        idk.style.width="100%";
+      }
+    }
+    function send() {
+      var a = '<%=tasc.ID%>';
+              const dat = {
+                  code: editor.getValue(),
+                  q: a,
+                  id: '<%=subid%>'
+            };
+ 
+            fetch("/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(dat),
+            });
+        }
+  </script>
+</body>
+<!--
+  SEND POST REQ TO /SUBMIT
+  REDIRECT TO /SUBMISSIONS/CURSUBMISSIONCOUNT
+  /SUBMISSIONS/SUBID CONTAINS CODE AND Q INFO AT FIRST
+  AFTER GETTING STUFF FROM /SUBMIT WRITE TO SUBMISSIONS JSON FILE
+  /SUBMISSIONS/SUBID KEEPS RELOADING IF AMOUNT OF VERDICTS != TEST CASE COUNT
+-->

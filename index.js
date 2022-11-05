@@ -1,24 +1,46 @@
 const express = require('express');
 const fs = require('fs');
 const app = express();
+const path = require("path");
 const {exec} = require("child_process")
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.get('/', (req, res, next) => {
   var test = require("./tasks.json");
-  var data = {
-    names: ['geddy', 'neil', 'alex']
-  };
-  res.render("index", {data:data, task:test});
+  res.render("index2", {task:test});
 });
-app.get('/submit', (req, res, next) => {
-  res.send(`QUESTIONS ATM: A1(a + b)\n<form method="POST" action="/submit">
-  <textarea type="text" name="code" placeholder="code" rows="30" cols="90"></textarea>
-  <textarea type="text" name="q" placeholder="q"></textarea>
-  <input type="submit">
-</form>`);
-});
+var file = require("./tasks.json");
+file.Tasks.forEach(task => {
+  const folder = `./pain/problems/${task.ID}/input/`;
+  const ik = require("./submissions.json");
+  var idk = parseInt(ik.Submissions[ik.Submissions.length-1].ID) + 1;
+  var arr = [];
+  fs.readdirSync(folder).forEach(file => {
+    if(path.parse(file).name[0]=='E'){
+      var a = fs.readFileSync(`./pain/problems/${task.ID}/input/${file}`), b=fs.readFileSync(`./pain/problems/${task.ID}/output/${path.parse(file).name}`+'.out');
+    arr.push({
+      "INPUT": a,
+      "OUTPUT": b
+    })
+  }
+  });
+  app.get('/tasks/'+task.ID, (req, res, next) => {
+    res.render("task", {tasc: task, arr:arr, subid: idk});
+  })
+})
 
 app.post('/submit', function (req, res, next) {
+  var cute = require("./submissions.json");
+  console.log(req.body.code);
+  cute.Submissions.push({
+    "ID": cute.Submissions.length + 1,
+    "Task": req.body.q,
+    "Code": req.body.code,
+    "Verdicts": []
+  });
+  fs.writeFile("./submissions.json", JSON.stringify(cute), function(err) {if(err) throw err});
   fs.writeFile("./pain/main.cpp", req.body.code, function(err) {if(err) throw err});
   fs.writeFile("./pain/communicate.txt", req.body.q, function(err) {if(err) throw err});
   exec("sudo docker build -t app .", (err) => {
@@ -26,17 +48,18 @@ app.post('/submit', function (req, res, next) {
       console.log(err.message);
       return;
     }
-      exec("sudo docker run app", (err, stdout, stderr) => {
+      exec("sudo docker run --network none app", (err, stdout, stderr) => {
         if(err) {
-          res.send(err.message);
+          console.log(err.message);
         } else if(stderr) {
-          res.send(stderr);
+          console.log(stderr);
 
         } else if(stdout) {
-          res.send(stdout);
+          cute.Submissions[cute.Submissions.length -1].Verdicts=JSON.parse(stdout);
+          fs.writeFile("./submissions.json", JSON.stringify(cute), function(err) {if(err) throw err});
+          console.log(stdout);
         }
       });
   });
 });
-
-app.listen(8080);
+app.listen(3000);

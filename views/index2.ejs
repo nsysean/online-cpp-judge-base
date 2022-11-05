@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #24273b;
+      overflow: hidden; 
+      height:100%;
+      display: block;
+    }
+    .taskbar {
+      padding-left: 1.5%;
+      padding-right: 1.5%;
+      width: 8%;
+      border-right: 1px dotted white;
+      position: absolute;
+      display: inline-block;
+      margin-bottom: -5000px;
+      padding-bottom: 5000px; 
+    }
+    .clock {
+      text-align: center;
+      color: white;
+      font-size: 30px;
+      padding-top: 10%;
+      padding-bottom: 10%;
+    }
+    .list {
+      letter-spacing: 0.25px;
+    }
+    .direc {
+      color: #9c9cab;
+      text-decoration: none;
+    }
+    .direc:hover {
+      color: white;
+    }
+    .ac {
+      color: white;
+    }
+    .selection {
+      font-size: 15px;
+      margin-bottom: 20%;
+    }
+    h1 {
+      color: #9c9cab;
+      font-size: 12.5px;  
+      padding-bottom: 10%;
+    }
+    .main {
+      margin-left: 8.5%;
+    }
+    .main2 {
+      margin-left: 11.5%;
+      margin-right: 2%;
+      width: 87.5%;
+      height: 10%;
+      position: fixed;
+    }
+    .main3 {
+      margin-left: 11.5%;
+      margin-right: 2%;
+      position: fixed;
+      width: 87.5%;
+      height: 100%;
+      display: none;
+      justify-content: center;
+      text-align: center;
+      background-color:#24273b;
+      overflow-y: scroll;
+    }
+    .wrapper{
+      max-width: 90%;
+      overflow: hidden;
+      margin: auto;
+    }
+    .custom-gallery {
+      overflow: hidden;
+    }
+
+    .custom-gallery ul {
+      width: 100%;
+      min-height:100%;
+      display: flex;
+      list-style-type: none;
+      padding: 0;
+      margin: 2%;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      overscroll-behavior: contain;  
+      cursor: pointer;
+    } 
+    .custom-gallery li {
+      width: 320px;
+      height: 270px;
+      margin: 0px 15px 10px 10px;
+      border-radius: 3%;
+      background-color: #151728;
+      -webkit-box-shadow: 2px 3px 5px 0 rgba(14, 14, 14, 0.44);
+      box-shadow: 2px 3px 5px 0 rgba(14, 14, 14, 0.44);
+    }
+    .custom-gallery2 li {
+      display: inline-block;
+      width: 320px;
+      height: 270px;
+      margin: 0px 15px 10px 10px;
+      border-radius: 3%;
+      background-color: #151728;
+      -webkit-box-shadow: 2px 3px 5px 0 rgba(14, 14, 14, 0.44);
+      box-shadow: 2px 3px 5px 0 rgba(14, 14, 14, 0.44);
+    }
+    .figure {
+      text-align: center;
+      padding-left: 5%;
+      padding-top: 8%;
+      padding-right: 5%;
+      height: 100%;
+      text-decoration: none;
+    }
+    .figure2 {
+      text-align: center;
+      position: relative;
+  float: left;
+      padding-left: 5%;
+      padding-top: 8%;
+      padding-right: 5%;
+      height: 100%;
+      text-decoration: none;
+    }
+    h2 {
+      color: grey;
+      font-size: 0.9em;
+    }
+    h3 {
+      color: white;
+      font-size: 1.2em;
+    }
+    h4 {
+      color: #9c9cab;
+    }
+    h5 {
+      color: white;
+      font-size: 1.6em;
+      margin-left: 3%;
+      margin-bottom: 0;
+    }
+    h7 {
+      color: #151728;
+      font-size: 2em;
+    }
+    h6 {
+      color: white;
+      font-size: 1.6em;
+      margin-left: 3%;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    .de {
+      text-transform: none;
+      letter-spacing: 0;
+      color: white;
+      font-size: 0.9em;
+      line-height: 1.4em;
+      text-align: center;
+      display: -webkit-box;   
+      -webkit-line-clamp: 3;   
+      -webkit-box-orient: vertical;     
+      overflow: hidden; 
+      padding-inline: 5%;
+    }
+    
+    .box {
+      float: left;
+    }
+    a:link { text-decoration: none; }
+
+a:visited { text-decoration: none; }
+
+a:hover { text-decoration: none; }
+
+a:active { text-decoration: none; }
+  </style>
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div class="taskbar">
+    <div class="clock">
+      <b>
+        <p id="r">00:00:00</p>
+      </b>
+    </div>
+    <div class="list">
+      <b>
+        <h1>NAV</h1>
+        <div class="selection">
+          <a href="/" class="direc ac"><i class="fa-solid fa-house"></i> Home</a>
+        </div>
+        <div class="selection">
+          <a href="/" class="direc"><i class="fa-solid fa-user"></i> Profile</a>
+        </div>
+        <div class="selection">
+          <a href="/" class="direc"><i class="fa-solid fa-paper-plane"></i> Submissions</a>
+        </div>
+        <div class="selection">
+          <a href="/" class="direc"><i class="fa-solid fa-trophy"></i> Contests</a>
+        </div>
+        <div class="selection">
+          <a href="/" class="direc"><i class="fa-solid fa-chart-simple"></i> Leaderboards</a>
+        </div>
+
+      </b>
+    </div>
+  </div>
+  <div class="main3" id="dd">
+    <div class="wrapper" style="margin-top:10%;">
+      <div class="custom-gallery2">
+        <ul class="blocks-gallery">
+          <div class="noresult">
+            <h7><b>No Results</b></h7>
+          </div>
+          <%
+          task.Tasks.sort(function(a,b){return b.AC-a.AC});
+          task.Tasks.forEach(t => {
+            %>
+            <card class="<%=t.Title%> <%=t.Tags.join(" ")%>">
+            <a href=<%="/tasks/"+t.ID%>>
+              <li class="blocks-gallery-item">
+                <div class="figure2">
+                  <p>
+                    <h2><%=t.Author.toUpperCase()%></h2>
+                    <h3><%=t.Title.toUpperCase()%></h3>
+                    <h4><i class="fa-solid fa-chart-simple"></i> <%=t.AC%> Solves, <%=t.Tags[0]%></h4>
+                    <div class="de"><%=t.Description%></div>
+                  </p>
+                </div>
+              </li>
+            </a>
+          </card>
+            <%
+          });
+          %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="main2">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for tasks.." style="z-index: 2; width:98%; height:10px;background-color:#151728;color:white;border:0;padding:1%;">
+</div>
+  </div>
+  <br><br>
+  <div class="main">
+    <div class="wrapper">
+      <h5>Recommended</h5>
+      <div class="custom-gallery">
+        <ul class="blocks-gallery">
+          <%
+          task.Tasks.sort(function(a,b){return b.AC-a.AC});
+          task.Tasks.forEach(t => {
+            %>
+            <a href=<%="/tasks/"+t.ID%>>
+              <li class="blocks-gallery-item">
+                <div class="figure">
+                  <p>
+                    <h2><%=t.Author.toUpperCase()%></h2>
+                    <h3><%=t.Title.toUpperCase()%></h3>
+                    <h4><i class="fa-solid fa-chart-simple"></i> <%=t.AC%> Solves, <%=t.Tags[0]%></h4>
+                    <div class="de"><%=t.Description%></div>
+                  </p>
+                </div>
+              </li>
+            </a>
+            <%
+          });
+          %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="wrapper">
+      <h6>New</h6>
+      <div class="custom-gallery">
+        <ul class="blocks-gallery">
+          <%
+          for (var i=task.Tasks.length-1; i>=0; i--) {
+            var t=task.Tasks[i];
+            %>
+            <a href=<%="/tasks/"+t.ID%>>
+              <li class="blocks-gallery-item">
+                <div class="figure">
+                  <p>
+                    <h2><%=t.Author.toUpperCase()%></h2>
+                    <h3><%=t.Title.toUpperCase()%></h3>
+                    <h4><i class="fa-solid fa-chart-simple"></i> <%=t.AC%> Solves, <%=t.Tags[0]%></h4>
+                    <div class="de"><%=t.Description%></div>
+                  </p>
+                </div>
+              </li>
+            </a>
+            <%
+          }
+          %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    var myVar = setInterval(function() {
+      myTimer();
+    }, 1000);
+  
+    function myTimer() {
+      var d = new Date();
+      const today = new Date();
+      let h = today.getHours();
+      let m = today.getMinutes();
+      let s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      document.getElementById("r").innerHTML =  h + ":" + m + ":" + s;
+    }
+    function checkTime(i) {
+      if (i < 10) {
+        i = "0" + i;
+      } 
+      return i;
+    }
+    function myFunction() {
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      if(filter.length>=1) {
+        const a = document. getElementById("dd");
+        a.style.display = "inline";
+        var k = document.getElementsByTagName("card");
+        var b = false;
+        for (var i=0; i<k.length; i++) {
+          if (k[i].className.toUpperCase().indexOf(filter) > -1) {
+            k[i].style.display = "", b=true;
+          } else {
+            k[i].style.display = "none";
+          }            
+          var g = document.getElementsByClassName("noresult")[0];
+          if(b==false) {
+            g.style.display = "flex";
+          } else {
+            g.style.display = "none";
+          }
+        }
+      } else {
+        const a = document. getElementById("dd");
+        a.style.display = "none";
+      }
+    }
+  </script>
+</body>

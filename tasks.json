@@ -7,102 +7,58 @@
       "AC": 0,
       "Attempts": 100,
       "Description": "You are learning addition. Unfortunately, you don't have enough fingers to add up large numbers. Write a program to help you calculate A+B.",
-      "Format": "The only line of input contains two integers A and B, separated by a space. (−100,000≤A,B≤100,000)\nOutput a single integer: A+B.",
-      "Submissions": [
-
-        {
-          "ID": 0,
-          "User": "cts",
-          "Accepted": true,
-          "Time": 0.000 
-        }
-      ],
+      "INPUT": "The only line of input contains two integers A and B, separated by a space. (−100,000≤A,B≤100,000)",
+      "OUTPUT": "Output a single integer: A+B.",
       "Tags": [
-        "Math"
+        "Math", "Math"
       ] 
     },
     {
       "Author": "dbsic211",
-      "ID": "A1",
+      "ID": "A2",
       "Title": "Calculate A-B",
-      "AC": 0,
+      "AC": 1,
       "Attempts": 100,
       "Description": "You are learning addition. Unfortunately, you don't have enough fingers to add up large numbers. Write a program to help you calculate A+B.",
       "Format": "The only line of input contains two integers A and B, separated by a space. (−100,000≤A,B≤100,000)\nOutput a single integer: A+B.",
-      "Submissions": [
-
-        {
-          "ID": 0,
-          "User": "cts",
-          "Accepted": true,
-          "Time": 0.000 
-        }
-      ],
       "Tags": [
-        "Math"
+        "Math", "Math"
       ] 
     },
     {
       "Author": "dbsic211",
-      "ID": "A1",
+      "ID": "A3",
       "Title": "Calculate A*B",
       "AC": 0,
       "Attempts": 100,
       "Description": "You are learning addition. Unfortunately, you don't have enough fingers to add up large numbers. Write a program to help you calculate A+B.",
       "Format": "The only line of input contains two integers A and B, separated by a space. (−100,000≤A,B≤100,000)\nOutput a single integer: A+B.",
-      "Submissions": [
-
-        {
-          "ID": 0,
-          "User": "cts",
-          "Accepted": true,
-          "Time": 0.000 
-        }
-      ],
       "Tags": [
-        "Math"
+        "Math", "Math"
       ] 
     },
     {
       "Author": "dbsic211",
-      "ID": "A1",
+      "ID": "A4",
       "Title": "Calculate A/B",
-      "AC": 0,
+      "AC": 3,
       "Attempts": 100,
       "Description": "You are learning addition. Unfortunately, you don't have enough fingers to add up large numbers. Write a program to help you calculate A+B.",
       "Format": "The only line of input contains two integers A and B, separated by a space. (−100,000≤A,B≤100,000)\nOutput a single integer: A+B.",
-      "Submissions": [
-
-        {
-          "ID": 0,
-          "User": "cts",
-          "Accepted": true,
-          "Time": 0.000 
-        }
-      ],
       "Tags": [
-        "Math"
+        "Math", "Math"
       ] 
     },
     {
       "Author": "dbsic211",
-      "ID": "A1",
+      "ID": "A5",
       "Title": "Calculate A^B",
       "AC": 0,
       "Attempts": 100,
       "Description": "You are learning addition. Unfortunately, you don't have enough fingers to add up large numbers. Write a program to help you calculate A+B.",
       "Format": "The only line of input contains two integers A and B, separated by a space. (−100,000≤A,B≤100,000)\nOutput a single integer: A+B.",
-      "Submissions": [
-
-        {
-          "ID": 0,
-          "User": "cts",
-          "Accepted": true,
-          "Time": 0.000 
-        }
-      ],
       "Tags": [
-        "Math"
+        "Math", "Math"
       ] 
     }
   ]

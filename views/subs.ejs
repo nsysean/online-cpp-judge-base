@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+  <style>
+
+  </style>
+</head>
+<body>
+  
+  <%=data.ID%>
+  <%=data.Task%>
+  <%=data.Code%>
+  <%=data.Verdidicts%>
+  <script>
+    var arr = '<%=data%>';
+    var arr2 = arr.Verdicts;
+    if(arr2.length != '<%=num%>') {
+      setTimeout(() => {
+        location.reload(); 
+      }, 100);
+    }
+  </script>
+</body>
