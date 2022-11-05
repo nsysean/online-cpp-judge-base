@@ -250,6 +250,7 @@ a:active { text-decoration: none; }
 
   <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
   <div class="taskbar">
@@ -355,7 +356,7 @@ var editor = ace.edit("editor");
       var idk = document.getElementsByClassName("task")[0];
       var idek = document.getElementsByClassName("tasc")[0];
       if(idk.style.width == "100%") {
-        idk.style.width="50%";
+        idk.style.width="44%";
         idek.style.display="inline-block";
       } else {
         idek.style.display="none";
@@ -377,13 +378,11 @@ var editor = ace.edit("editor");
                 },
                 body: JSON.stringify(dat),
             });
+          fetch("../submissions.json")
+          .then (res => res.json())
+          .then (data => {
+            setTimeout(() => { window.open('http://'+location.hostname+':'+location.port+`/submissions?id=${data.Submissions.length}`, "_blank") }, 100);
+          });
         }
   </script>
 </body>
-<!--
-  SEND POST REQ TO /SUBMIT
-  REDIRECT TO /SUBMISSIONS/CURSUBMISSIONCOUNT
-  /SUBMISSIONS/SUBID CONTAINS CODE AND Q INFO AT FIRST
-  AFTER GETTING STUFF FROM /SUBMIT WRITE TO SUBMISSIONS JSON FILE
-  /SUBMISSIONS/SUBID KEEPS RELOADING IF AMOUNT OF VERDICTS != TEST CASE COUNT
--->

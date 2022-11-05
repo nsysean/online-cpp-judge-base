@@ -30,7 +30,22 @@ file.Tasks.forEach(task => {
     res.render("task", {tasc: task, arr:arr, subid: idk});
   })
 })
-
+app.get('/submissions.json', (req, res, next) => {
+  res.send(require("./submissions.json"));
+})
+app.get('/submissions', (req, res, next) => {
+  var cute = require("./submissions.json");
+  const urlParams = new URLSearchParams(req.query);
+  const id = urlParams.get('id');
+  var i = 0;
+  const folder = `./pain/problems/${cute.Submissions[id-1].Task}/input/`;
+  fs.readdirSync(folder).forEach(file => {
+    if(path.parse(file).name[0]!='E'){
+      i++;
+    }
+  });
+  res.render("subs", {cts:cute, id:id, tt:i});
+})
 app.post('/submit', function (req, res, next) {
   var cute = require("./submissions.json");
   console.log(req.body.code);
