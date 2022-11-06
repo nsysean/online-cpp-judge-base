@@ -4,9 +4,9 @@ const fs = require("fs");
 
 const input = fs.readFileSync('input.txt');
 
-child.stdin.write(input.toString());
+child.stdin.write("1");
 child.stdin.end();
 
-child.stdout.on('data', (data) => {
-    console.log(data);
+child.stderr.on('data', (data) => {
+    console.log(data.toString());
 });

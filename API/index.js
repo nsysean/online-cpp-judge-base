@@ -26,20 +26,20 @@ app.post('/validate', function (req, res, next) {
                 throw err;
             }
         });
-        fs.writeFile(`./input.txt`, req.body.tcs, function(err) {
+        fs.writeFile(`./validator/input.txt`, req.body.tcs, function(err) {
             if(err) {
                 throw err;
             }
         }); 
-        exec("cd validator && g++ ../main.cpp && cd ..", (err, stdout) => {
+        exec("cd validator && g++ ../main.cpp && cd ..", (err) => {
             if(err) {
                 throw err;
             } else {
-                exec("sudo docker build -t app .", (err, stdout, stderr) => {
+                exec("sudo docker build -t app .", (err, stdout) => {
                     if(err) {
                         throw err;
                     } else if(stdout) {
-                        exec("sudo docker run --network none app", (err, stdout, stderr) => {
+                        exec("sudo docker run --network none app", (err, stdout) => {
                             if(err) {
                                 throw err;
                             } else if(stdout) {
