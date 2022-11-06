@@ -70,10 +70,10 @@ app.post('/submit', function (req, res, next) {
           console.log(stderr);
 
         } else if(stdout) {
-          cute.Submissions[cute.Submissions.length -1].Verdicts=JSON.parse(stdout);
-          fs.writeFile("./submissions.json", JSON.stringify(cute), function(err) {if(err) throw err});
-          console.log(stdout);
-        }
+            cute.Submissions[cute.Submissions.length -1].Verdicts=JSON.parse(stdout);
+            fs.writeFile("./submissions.json", JSON.stringify(cute), function(err) {if(err) throw err});
+            console.log(stdout);
+        } 
       });
   });
 });

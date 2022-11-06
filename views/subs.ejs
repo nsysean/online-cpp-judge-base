@@ -301,7 +301,7 @@ a:active { text-decoration: none; }
           ok.Submissions[id-1].Verdicts.forEach(a => {
           %>
 
-            <div class="item"><h2><%=(a.Accepted == true ? "Accepted" : "Wrong Answer")%></h2></div>  
+            <div class="item"><h2><%=(a.Verdict)%></h2></div>  
             <div class="item"><h2><%=a.Time%>ms</h2></div>  
           
           <%
@@ -347,7 +347,6 @@ var editor = ace.edit("editor");
             document.getElementById("1").innerHTML = `Submission ${id}`;
 
             if('<%=cts.Submissions[id-1].Verdicts.length%>' < '<%=tt%>') {
-              '<%=console.log("ono", tt)%>'
               setTimeout(() => {
                 location.reload();
               }, 500);
@@ -356,7 +355,7 @@ var editor = ace.edit("editor");
               var q = false;
               editor.setValue(data.Submissions[id-1].Code);
               for (var i=0; i<data.Submissions[id-1].Verdicts.length; i++) {
-                if(data.Submissions[id-1].Verdicts[i].Accepted == false) q = true;
+                if(data.Submissions[id-1].Verdicts[i].Verdict != "Accepted") q = true;
               }
               if(q == true) {
                 document.getElementById("2").innerHTML = `Wrong Answer`;

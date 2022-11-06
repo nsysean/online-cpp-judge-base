@@ -1,3 +1,6 @@
-#include "bits/stdc++.h"
-u
+#include<cstdio>
+int main(){
+    int n;
+    scanf("%d", &n);
+printf("pass");
 }

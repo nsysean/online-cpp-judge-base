@@ -17,9 +17,17 @@ const { exit } = require("process");
   try {
   exec("g++ main.cpp", (error, stdout, stderr) => {
     if (error) {
-      console.log(`error: ${error.message}`);
+      while(i < size) {
+        arr.push({"Verdict": "Runtime Error", "Time": 0});
+        i++;
+      }
+      console.log(JSON.stringify(arr));
     }else if (stderr) {
-      console.log(`stderr: ${stderr}`);
+      while(i < size) {
+        arr.push({"Verdict": "Runtime Error", "Time": 0});
+        i++;
+      }
+      console.log(JSON.stringify(arr));
     } else {
     const fs = require("fs"), path = require("path");
     const folder = `./problems/${question}/input/`;
@@ -33,7 +41,7 @@ const { exit } = require("process");
       let ms = d.getMilliseconds();
 
       setTimeout(() => {  
-        arr.push(`TEST ${path.parse(file).name}: TLE`);
+        arr.push({"Verdict": "Time Limit Exceeded", "Time": 1000});
         i++;
         if(i==size) console.log(JSON.stringify(arr));
         child.kill();
@@ -43,7 +51,7 @@ const { exit } = require("process");
         const e = new Date();
         let mse = e.getMilliseconds();
         if(mse<ms) mse+=1000;
-        arr.push({"Accepted": data.equals(cts), "Time": mse-ms});
+        arr.push({"Verdict": `${(data.equals(cts) ? "Accepted" : "Wrong Answer")}`, "Time": mse-ms});
         i++;
         if(i==size) {
           console.log(JSON.stringify(arr));
