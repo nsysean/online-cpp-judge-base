@@ -21,7 +21,7 @@ app.post('/validate', function (req, res, next) {
     if(queue[queue.length-1] == req.body) {
         console.log(queue.length);
         console.log(req.body);
-        fs.writeFile('./main.cpp', req.body.code, function (err) {
+        fs.writeFile('./validator/main.cpp', req.body.code, function (err) {
             if(err) {
                 throw err;
             }
@@ -31,30 +31,24 @@ app.post('/validate', function (req, res, next) {
                 throw err;
             }
         }); 
-        exec("cd validator && g++ ../main.cpp && cd ..", (err) => {
+        exec("sudo docker build -t app .", (err, stdout) => {
             if(err) {
                 throw err;
-            } else {
-                exec("sudo docker build -t app .", (err, stdout) => {
+            } else if(stdout) {
+                exec("sudo docker run --network none app", (err, stdout) => {
                     if(err) {
                         throw err;
                     } else if(stdout) {
-                        exec("sudo docker run --network none app", (err, stdout) => {
-                            if(err) {
-                                throw err;
-                            } else if(stdout) {
-                                console.log(stdout);
-                            }
-                        });
+                        res.send(stdout);
+                        const input = fs.readFileSync('./validator/input.txt');
+                        console.log(JSON.stringify(input.toString()));
                     }
                 });
             }
         });
         exec("sudo docker system prune --force", (err, stdout) => {
             if(err) {
-                console.log(err);
-            } else if(stdout) {
-                console.log(stdout);
+                throw err;
             }
         });
         queue.pop();
