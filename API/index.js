@@ -16,12 +16,19 @@ app.get('/validate', (req, res, next) => {
     </form>`);
 })
 
-app.post('/validate', function (req, res, next) {
+// app.post('/validate', function (req, res, next) {
+function cts() {
+    var req = {
+        "body": {
+            multiple: true,
+            tcs: "2\r\n"
+        }
+    };
     queue.push(req.body);
     if(queue[queue.length-1] == req.body) {
         console.log(queue.length);
         console.log(req.body);
-        fs.writeFile('./validator/main.cpp', req.body.code, function (err) {
+        /*fs.writeFile('./validator/main.cpp', req.body.code, function (err) {
             if(err) {
                 throw err;
             }
@@ -30,7 +37,15 @@ app.post('/validate', function (req, res, next) {
             if(err) {
                 throw err;
             }
-        }); 
+        });*/
+        fs.rmSync("./validator/b.txt", {
+            force: true,
+        });
+        if(req.body.multiple == true) {
+            fs.writeFile('./validator/b.txt', 'a', (err) => {
+                if(err) throw err;
+            });
+        }
         exec("sudo docker build -t app .", (err, stdout) => {
             if(err) {
                 throw err;
@@ -39,9 +54,7 @@ app.post('/validate', function (req, res, next) {
                     if(err) {
                         throw err;
                     } else if(stdout) {
-                        res.send(stdout);
-                        const input = fs.readFileSync('./validator/input.txt');
-                        console.log(JSON.stringify(input.toString()));
+                        console.log(stdout);
                     }
                 });
             }
@@ -53,6 +66,8 @@ app.post('/validate', function (req, res, next) {
         });
         queue.pop();
     }
-});
+}
+cts();
+//});
 
 app.listen(8080);

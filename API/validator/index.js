@@ -1,14 +1,15 @@
 const { spawn, exec } = require("child_process");
 const fs = require("fs");
 
-const input = fs.readFileSync('input.txt');
+var input = fs.readFileSync('input.txt');
 exec("g++ main.cpp", (err) => {
     if(err) {
         throw err;
     } else {
         const child = spawn("./a.out");
-        child.stdin.on('error', (error) => console.log("error caught: ", error));
-        console.log(input);
+
+        input = input.toString().replaceAll("\r\n", "\n");
+
         child.stdin.write(input);
         child.stdin.end();
 
