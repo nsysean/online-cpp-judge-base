@@ -8,27 +8,10 @@ var queue = [];
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/validate', (req, res, next) => {
-    res.send(`<form method="POST" action="/validate">
-    <textarea type="text" name="tcs" rows="30" cols="30">TCS</textarea>
-    <textarea type="text" name="code" rows="30" cols="30">Validator</textarea>
-    <input type="submit">
-    </form>`);
-})
-
-// app.post('/validate', function (req, res, next) {
-function cts() {
-    var req = {
-        "body": {
-            multiple: true,
-            tcs: "2\r\n"
-        }
-    };
+app.post('/validate', function (req, res, next) {
     queue.push(req.body);
     if(queue[queue.length-1] == req.body) {
-        console.log(queue.length);
-        console.log(req.body);
-        /*fs.writeFile('./validator/main.cpp', req.body.code, function (err) {
+        fs.writeFile('./validator/main.cpp', req.body.code, function (err) {
             if(err) {
                 throw err;
             }
@@ -37,11 +20,11 @@ function cts() {
             if(err) {
                 throw err;
             }
-        });*/
+        });
         fs.rmSync("./validator/b.txt", {
             force: true,
         });
-        if(req.body.multiple == true) {
+        if(req.body.multiple == "true") {
             fs.writeFile('./validator/b.txt', 'a', (err) => {
                 if(err) throw err;
             });
@@ -54,7 +37,22 @@ function cts() {
                     if(err) {
                         throw err;
                     } else if(stdout) {
-                        console.log(stdout);
+                        var input = fs.readFileSync('./validator/input.txt'), inputs = [], arr = [];
+                        if(req.body.multiple == "true") {
+                            do {
+                                var pos = input.toString().search("===");
+                                var s = input.toString().substring(0, pos);
+                                input = input.toString().substring(pos + 5, input.toString().length);
+                                inputs.push(s);
+                            } while(input.toString().search("===") != -1);
+                        }
+                        inputs.push(input);
+                        var results = JSON.parse("["+stdout.toString().substring(0, stdout.toString().length-2)+"]");
+                        for(var inp of inputs) {
+                            var i = results.find(element => element.inpu == inp);
+                            arr.push(i ? i.err : "Valid");
+                        }
+                        res.send(arr);
                     }
                 });
             }
@@ -66,8 +64,6 @@ function cts() {
         });
         queue.pop();
     }
-}
-cts();
-//});
+});
 
 app.listen(8080);
